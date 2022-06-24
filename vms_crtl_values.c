@@ -60,7 +60,9 @@ void vms_set_crtl_values(void) {
         set (enable_feature[i], 1);
     }
     // set ("DECC$POSIX_COMPLIANT_PATHNAMES", 1);  // required for realpath(), but getcwd() is failed
+
     set ("DECC$PIPE_BUFFER_SIZE", 65535);
+    set ("DECC$PIPE_BUFFER_QUOTA", 65536);
 
     decc$set_reentrancy(C$C_MULTITHREAD);
 }

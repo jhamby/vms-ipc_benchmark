@@ -1,7 +1,7 @@
 ! MMS/MMK build file
 ! Use MMS/EXT if you build with MMS.
 
-TARGET = pipe.exe, socketpair.exe, uds.exe, tcp.exe, udp.exe, shm.exe
+TARGET = pipe.exe, fpipe.exe, socketpair.exe, uds.exe, tcp.exe, udp.exe, shm.exe
 CRTL_INIT = vms_crtl_init.obj, vms_crtl_values.obj
 
 .ifdef MMSALPHA
@@ -16,6 +16,10 @@ all : $(TARGET)
 
 ! Compile pipe
 pipe.exe : pipe.obj, $(CRTL_INIT)
+    $(LINK) $(LINKFLAGS) $(MMS$SOURCE_LIST)
+
+! Compile fpipe
+fpipe.exe : fpipe.obj, $(CRTL_INIT)
     $(LINK) $(LINKFLAGS) $(MMS$SOURCE_LIST)
 
 ! Compile socketpair

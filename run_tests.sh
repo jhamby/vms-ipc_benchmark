@@ -1,13 +1,13 @@
 #! /bin/sh
 
 # Tests file binaries and test sizes
-if [ `uname -s` -eq "OpenVMS" ]; then
+if [ `uname -s` = "OpenVMS" ]; then
     ipc_tests="pipe socketpair uds tcp shm udp"
 else
     ipc_tests="posixq pipe fifo socketpair uds tcp shm udp"
 fi
-ipc_sizes="128 256 512 1024 2048"
-ipc_count=10000
+ipc_sizes="128 256 512 1024 2048 4096"
+ipc_count=100000
 
 # Write to log file, keeps echo parameters
 write_log()
@@ -42,7 +42,7 @@ do
     write_log "${test}"
 
     # Headers
-    write_log "$(echo ${ipc_sizes} | tr [:space:] '|')"
+    write_log "$(echo "\t${ipc_sizes}" | tr [:space:] '|')"
 
     # Benchmark's actual data
     for tsize in ${ipc_sizes}

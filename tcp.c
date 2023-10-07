@@ -94,6 +94,7 @@ int main(int argc, char *argv[]) {
             fprintf(stderr, "sum error: %lld != %lld\n", sum, count * size);
             return 1;
         }
+        close(fd);
     } else {
 #ifdef __VMS
         char *argv_copy[5];
@@ -126,12 +127,13 @@ int main(int argc, char *argv[]) {
 
         for (i = 0; i < count; i++) {
             if (write(fd, buf, size) != size) {
-                perror("wirte");
+                perror("write");
                 return 1;
             }
         }
 
         gettimeofday(&end, NULL);
+        close(fd);
 
         double tm = getdetlatimeofday(&begin, &end);
         printf("%.0fMB/s %.0fmsg/s\n",

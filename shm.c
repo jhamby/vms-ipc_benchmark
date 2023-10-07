@@ -126,7 +126,6 @@ int main(int argc, char *argv[])
             perror("child: shmat");
             return -1;
         }
-        fprintf(stderr, "child created sem/shm\n");
 
         for (i = 0; i < count; i++)
         {
@@ -166,7 +165,6 @@ int main(int argc, char *argv[])
 #else
         sleep(1);
 #endif
-        fprintf(stderr, "parent sleep remaining = %d\n", sleep(5));
         sem_id = semget(SEM_KEY, 0, 0);
         if (sem_id == -1)
         {

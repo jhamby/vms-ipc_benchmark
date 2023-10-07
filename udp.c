@@ -121,6 +121,7 @@ int main(int argc, char *argv[]) {
         }
 
         gettimeofday(&end, NULL);
+        close(fd);
 
         double tm = getdetlatimeofday(&begin, &end);
         printf("%.0fMB/s %.0fmsg/s\n",
